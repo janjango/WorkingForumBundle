@@ -59,7 +59,7 @@
         });
     }
 
-    function voteUp(id, this)
+    function voteUp(id, element)
     {
         jQuery.ajax({
             type: "POST",
@@ -71,7 +71,7 @@
             success: function(content){
                 if (content.res == 'true')
                 {
-                    jQuery(this).remove();
+                    jQuery(element).remove();
                     jQuery('#voteUpLabel_'+id).html('+ '+content.voteUp);
                 }
                 else {
