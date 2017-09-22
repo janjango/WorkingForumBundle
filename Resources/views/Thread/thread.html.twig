@@ -176,7 +176,7 @@
                                    onclick="moderate({{ post.id }}); return false;"
                                    title="{{ 'admin.report.moderate' | trans }}"
                                 ><img class="wf_quote-img"
-                                                                                                  src="{{ asset('bundles/yosimitsoworkingforum/images/moderate.png') }}"></a>
+                                      src="{{ asset('bundles/yosimitsoworkingforum/images/moderate.png') }}"></a>
                             {% endif %}
                         </p>
                         <div id="wf_post{{ post.id }}">
@@ -186,18 +186,20 @@
                                 <p class="wf_moderate">{{ 'forum.post_moderated' |trans }} {{ post.moderateReason }}</p>
                             {% endif %}
                         </div>
+                        {% if loop.index != 1 and post.user.id != app.user.id %}
+                            <a href="#"
+                               onclick="voteUp({{ post.id }}, this); return false"
+                               id="voteUpLink_{{ post.id }}"
+                            >
+                                <img class="wf_quote-img"
+                                     src="{{ asset('bundles/yosimitsoworkingforum/images/thumbup.png') }}">
+
+                            </a>
+                            <span class="voteup" id="voteUpLabel_{{ post.id }}">+ {{ post.voteUp |default(0) }}</span>
+                        {% endif %}
                     </div>
                     <div>
-                       {% if loop.index != 1 and post.user.id != app.user.id %}
-                            <a href="#"
-                                onlick="voteUp({{ post.id }}, this)"
-                            >
-                                Useful
-                            </a>
-                       {% endif %}
-                        {% if post.voteUp > 0 %}
-                            <span class="voteup" id="voteUpLabel_{{ post.id }}">{{ post.voteUp }}</span>
-                        {% endif %}
+
                     </div>
                     <div class="wf_clear"></div>
                 </div>

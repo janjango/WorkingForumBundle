@@ -29,7 +29,7 @@ class PostController extends Controller
             return new Response(json_encode(['res' => 'false', 'errMsg' => 'An user can\'t vote for his post'], 500));
         }
 
-        $subforum = $em->getRepository('YosimitsoWorkingForumBundle:Subforum')->findOneById($post->getThread()->getId());
+        $subforum = $em->getRepository('YosimitsoWorkingForumBundle:Subforum')->findOneById($post->getThread()->getSubforum()->getId());
 
         if (is_null($subforum)) {
             return new Response(json_encode(['res' => 'false', 'errMsg' => 'Internal error'], 500));
@@ -46,7 +46,7 @@ class PostController extends Controller
             $postVote = new PostVote();
             $postVote->setPost($post)
                     ->setUser($user)
-                    ->setType(PostVote::VOTE_UP)
+                    ->setVoteType(PostVote::VOTE_UP)
                 ;
 
             $post->addVoteUp();

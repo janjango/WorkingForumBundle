@@ -71,8 +71,9 @@
             success: function(content){
                 if (content.res == 'true')
                 {
+                    let img = jQuery(element).html();
                     jQuery(element).remove();
-                    jQuery('#voteUpLabel_'+id).html('+ '+content.voteUp);
+                    jQuery('#voteUpLabel_'+id).html(img+'+ '+content.voteUp);
                 }
                 else {
                     alert('Sorry an error occured : '+content.errMsg);

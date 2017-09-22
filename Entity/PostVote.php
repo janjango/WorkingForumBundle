@@ -91,7 +91,7 @@ class PostVote
      *
      * @return PostVote
      */
-    public function setVoteUpNb($voteType)
+    public function setVoteType($voteType)
     {
         $this->voteType = $voteType;
 
