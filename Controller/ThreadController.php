@@ -160,11 +160,14 @@ class ThreadController extends Controller
             ->findByThread($thread->getId())
         ;
 
+
         $post_list = $paginator->paginate(
             $post_query,
             $request->query->get('page',1)/*page number*/,
             $this->container->getParameter('yosimitso_working_forum.post_per_page') /*limit per page*/
         );
+
+        $hasAlreadVoted = $this->getDoctrine()->getManager()->getRepository('YosimitsoWorkingForumBundle:PostVote')->findBy([''])
 
 
 
