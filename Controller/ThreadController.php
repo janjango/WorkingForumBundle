@@ -167,8 +167,7 @@ class ThreadController extends Controller
             $this->container->getParameter('yosimitso_working_forum.post_per_page') /*limit per page*/
         );
 
-        $hasAlreadVoted = $this->getDoctrine()->getManager()->getRepository('YosimitsoWorkingForumBundle:PostVote')->findBy([''])
-
+        $hasAlreadyVoted = $this->getDoctrine()->getManager()->getRepository('YosimitsoWorkingForumBundle:PostVote')->getThreadVoteByUser($thread, $user);
 
 
 
@@ -184,7 +183,8 @@ class ThreadController extends Controller
                 'request'     => $request,
                 'moveThread' => $moveThread,
                 'allowModeratorDeleteThread' => $this->getParameter('yosimitso_working_forum.allow_moderator_delete_thread'),
-                'autolock' => $autolock
+                'autolock' => $autolock,
+                'hasAlreadyVoted' => $hasAlreadyVoted
             ]
         );
 

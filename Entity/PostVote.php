@@ -35,6 +35,13 @@ class PostVote
     private $post;
 
     /**
+     * @var ArrayCollection
+     * @ORM\ManyToOne(targetEntity="Yosimitso\WorkingForumBundle\Entity\Thread")
+     * @ORM\JoinColumn(name="thread_id", referencedColumnName="id", nullable=true)
+     */
+    private $thread;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="voteType", type="integer")
@@ -82,6 +89,26 @@ class PostVote
     public function getPost()
     {
         return $this->post;
+    }
+
+    /**
+     * @param Thread $thread
+     *
+     * @return Post
+     */
+    public function setThread(Thread $thread)
+    {
+        $this->thread = $thread;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getThread()
+    {
+        return $this->thread;
     }
 
     /**
